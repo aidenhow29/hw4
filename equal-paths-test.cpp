@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cstdlib>
 #include "equal-paths.h"
-using namespace std;
+using namespace std;  
 
 
 Node* a;

@@ -435,7 +435,7 @@ Value const & BinarySearchTree<Key, Value>::operator[](const Key& key) const
     return curr->getValue();
 }
 
-/**
+/** ------   DONE   --------------------------------------------------------------------------
 * An insert method to insert into a Binary Search Tree.
 * The tree will not remain balanced when inserting.
 * Recall: If key is already in the tree, you should 
@@ -444,8 +444,44 @@ Value const & BinarySearchTree<Key, Value>::operator[](const Key& key) const
 template<class Key, class Value>
 void BinarySearchTree<Key, Value>::insert(const std::pair<const Key, Value> &keyValuePair)
 {
-    // TODO
+   //key and value
+   Key key = keyValuePair.first;
+   Value value = keyValuePair.second;
+
+   //empty
+   if(root_ == nullptr){
+    root_ = new Node<Key, Value>(key, value, nullptr);
+    return;
+   }
+
+   Node<Key, Value>* current = root_;
+   Node<Key, Value>* parent = nullptr;
+
+   while(current != nullptr){
+      parent = current;
+      if(key < current->getKey()){
+        current = current->getLeft();
+      }
+      else if (key > current->getKey()){
+        current = current->getRight();
+      }
+      else{
+        current->setValue(value);
+        return;
+      }
+   }
+
+  //new node & correct positioning
+   Node<Key, Value>* newNode = new Node<Key, Value>(key, value, parent);
+   if(key < parent -> getKey()){
+    parent->setLeft(newNode);
+   }
+   else{
+    parent->setRight(newNode);
+   }
+
 }
+// -------------------------------------------------------------------------------
 
 
 /**
